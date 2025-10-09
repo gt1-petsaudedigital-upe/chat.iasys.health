@@ -188,12 +188,12 @@
         }),
       });
 
+      const data = await response.json();
+      const botReply = data.reply;
+
       if (!response.ok) {
         throw new Error(`Erro na API: ${response.statusText}`);
       }
-
-      const data = await response.json();
-      const botReply = data.reply;
 
       addMessageToChat('bot', botReply);
 
@@ -215,3 +215,4 @@
 </body>
 
 </html>
+
