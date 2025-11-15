@@ -2,7 +2,7 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 const chatMessages = document.getElementById("chat-messages");
 
-const API_URL = "https://chat-iasys.up.railway.app/chat";
+const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
 
 const sessionId = crypto.randomUUID();
 
@@ -56,3 +56,4 @@ function addMessageToChat(sender, text) {
 
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
