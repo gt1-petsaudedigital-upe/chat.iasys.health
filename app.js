@@ -2,7 +2,8 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 const chatMessages = document.getElementById("chat-messages");
 
-const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
+// const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
+const API_URL = "http://localhost:3000/chat";
 
 const sessionId = crypto.randomUUID();
 
@@ -29,13 +30,17 @@ messageForm.addEventListener("submit", async (event) => {
     });
 
     const data = await response.json();
-    const botReply = data.reply;
+    let botReplies = data.replies;
 
     if (!response.ok) {
       throw new Error(`Erro na API: ${response.statusText}`);
     }
 
-    addMessageToChat("bot", botReply);
+    botReplies.forEach((reply) => {
+      const formattedReply = processMarkdown(reply);
+      addMessageToChat("bot", formattedReply);
+    });
+
   } catch (error) {
     console.error("Falha ao se comunicar com o chatbot:", error);
     addMessageToChat(
@@ -51,9 +56,33 @@ function addMessageToChat(sender, text) {
     "message",
     sender === "user" ? "user-message" : "bot-message"
   );
-  messageElement.textContent = text;
+
+  if (sender === "bot") {
+    messageElement.innerHTML = text;
+  } else {
+    messageElement.textContent = text; // Usuário continua seguro
+  }
+
   chatMessages.appendChild(messageElement);
 
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+function processMarkdown(text) {
+    let processedText = text;
+
+    const linkRegex = /(https?:\/\/[^\s\n]+)/g;
+    processedText = processedText.replace(linkRegex, (url) => {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    });
+
+    const boldRegex = /\*\*(.*?)\*\*/g;
+    processedText = processedText.replace(boldRegex, '<strong>$1</strong>');
+    
+    const italicRegex = /\*(.*?)\*/g;
+    processedText = processedText.replace(italicRegex, '<em>$1</em>');
+
+    processedText = processedText.replace(/\n/g, '<br>');
+
+    return processedText;
+}

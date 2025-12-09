@@ -133,3 +133,44 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+
+
+
+.bot-message em {
+  color: #38a169; /* Uma cor secundária */
+  font-style: italic;
+}
+
+.bot-message a {
+  color: #004d99;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bot-message a:hover {
+  color: #003366;
+  text-decoration: none; /* Remove underline no hover para um efeito visual */
+}
+
+.bot-message ul,
+.bot-message ol {
+  /* Remove a margem padrão das listas para integrá-las ao texto */
+  margin: 4px 0 0 10px;
+  padding-left: 10px;
+}
+
+/* Estilo para formatar os itens da lista para parecerem mais texto corrido */
+.bot-message p,
+.bot-message div {
+  /* Garante que o espaçamento entre parágrafos seja coeso */
+  margin-bottom: 8px;
+}
+
+/* Regra para formatar o texto que começa com travessão (-) como uma lista sem o bullet */
+/* Isso imita uma lista HTML <ul> mais suave */
+.bot-message {
+  /* O padding-left padrão do balão já ajuda */
+  padding-left: 15px;
+  white-space: pre-wrap; /* Garante que as quebras de linha sejam respeitadas */
+}
