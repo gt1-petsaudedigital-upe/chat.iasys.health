@@ -2,8 +2,7 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 const chatMessages = document.getElementById("chat-messages");
 
-// const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
-const API_URL = "http://localhost:3000/chat";
+const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
 
 const sessionId = crypto.randomUUID();
 
