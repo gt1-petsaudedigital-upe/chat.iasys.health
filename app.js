@@ -2,7 +2,8 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 const chatMessages = document.getElementById("chat-messages");
 
-const API_URL = "https://chatbot-llama-saude.onrender.com/chat";
+const API_URL = "";
+
 
 const sessionId = crypto.randomUUID();
 
@@ -85,3 +86,4 @@ function processMarkdown(text) {
 
     return processedText;
 }
+
