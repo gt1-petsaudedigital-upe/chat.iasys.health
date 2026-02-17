@@ -2,8 +2,7 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 const chatMessages = document.getElementById("chat-messages");
 
-const API_URL = "";
-
+const API_URL = window.ENV.API_URL;
 
 const sessionId = crypto.randomUUID();
 
@@ -86,4 +85,5 @@ function processMarkdown(text) {
 
     return processedText;
 }
+
 
